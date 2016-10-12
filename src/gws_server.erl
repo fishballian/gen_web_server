@@ -125,7 +125,7 @@ handle_info({tcp, _Sock, Data}, State) when is_binary(Data) ->
            inet:setopts(State#state.socket, [{active, once}]),
            {noreply, NewState};
        true ->
-           {stop, noreply, handle_http_request(NewState)}
+           {stop, normal, handle_http_request(NewState)}
     end;
 handle_info({tcp_closed, _Sock}, State) ->
     {stop, normal, State};
